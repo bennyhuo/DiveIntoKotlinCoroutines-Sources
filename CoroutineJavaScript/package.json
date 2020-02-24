@@ -1,0 +1,9 @@
+{
+  "name": "CoroutineJavaScript",
+  "version": "1.0.0",
+  "dependencies": {
+    "node-fetch": "*",
+    "abort-controller": "*",
+    "ws": "*"
+  }
+}

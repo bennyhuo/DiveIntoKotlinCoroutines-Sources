@@ -1,0 +1,6 @@
+#ifndef KOTLINNATIVECLIB_HELLO_H
+#define KOTLINNATIVECLIB_HELLO_H
+
+void hello(void);
+
+#endif //KOTLINNATIVECLIB_HELLO_H

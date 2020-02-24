@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".ui.MainActivity">
+
+        <Button
+            android:id="@+id/showDialogButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show Dialog"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/downloadButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Download"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/loadUsersFromDb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Load Users"
+            android:textAllCaps="false"/>
+
+        <ListView
+            android:id="@+id/userListView"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
+        <Button
+            android:id="@+id/loadGitUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Load Git User"
+            android:textAllCaps="false"/>
+
+        <TextView
+            android:id="@+id/gitUserTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/loadImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Load Kotlin Logo"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/loadImage2Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Load Android Logo"
+            android:textAllCaps="false"/>
+
+
+        <ImageView
+            android:id="@+id/logoView"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
+    </LinearLayout>
+</ScrollView>

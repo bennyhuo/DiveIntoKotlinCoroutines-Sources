@@ -1,0 +1,18 @@
+{
+  "name": "JavaScript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "13.5.3",
+    "axios": "^0.19.2",
+    "rxjs": "^6.5.4"
+  }
+}

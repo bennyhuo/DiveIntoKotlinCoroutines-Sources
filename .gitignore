@@ -1,0 +1,12 @@
+build
+.idea
+*.iml
+out
+target
+*.so
+
+.gradle
+local.properties
+node_modules
+
+*.pyc

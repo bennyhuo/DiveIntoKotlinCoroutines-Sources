@@ -1,0 +1,4 @@
+headers = Hello.h
+
+compilerOpts.mingw = -Ilibs/include
+linkerOpts.mingw = -Llibs/lib -lHello
