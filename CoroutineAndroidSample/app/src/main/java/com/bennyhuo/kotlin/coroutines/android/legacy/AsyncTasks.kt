@@ -51,18 +51,23 @@ class CallbackAsyncTask<P, R>(
 
 class UrlAsyncTask(
     private val onProgress: ((Int) -> Unit)? = null,
-    private val onComplete: ((InputStream) -> Unit)? = null
-) : AsyncTask<String, Int, List<InputStream>>() {
+    private val onComplete: ((Bitmap) -> Unit)? = null
+) : AsyncTask<String, Int, List<Bitmap>>() {
 
-    override fun doInBackground(vararg params: String): List<InputStream> {
+    override fun doInBackground(vararg params: String): List<Bitmap> {
         return params.mapIndexed { index, param ->
             publishProgress(index * 100 / params.size)
-            val response = okHttpClient.newCall(Request.Builder().get().url(param).build()).execute()
-            response.body()?.byteStream()?: throw HttpException(response)
+            val response = okHttpClient.newCall(
+                Request.Builder().get().url(param).build()
+            ).execute()
+
+            response.body()?.byteStream()
+                ?.let { BitmapFactory.decodeStream(it) }
+                ?: throw HttpException(response)
         }.also { publishProgress(100) }
     }
 
-    override fun onPostExecute(result: List<InputStream>) {
+    override fun onPostExecute(result: List<Bitmap>) {
         onComplete?.let(result::forEach)
     }
 

@@ -127,8 +127,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         loadImage2Button.setOnClickListener {
-            UrlAsyncTask(onComplete = { inputStream ->
-                BitmapFactory.decodeStream(inputStream).let(logoView::setImageBitmap)
+            UrlAsyncTask(onComplete = { bitmap ->
+                logoView.setImageBitmap(bitmap)
             }).execute("https://upload.wikimedia.org/wikipedia/commons/3/3e/Android_logo_2019.png")
         }
 
