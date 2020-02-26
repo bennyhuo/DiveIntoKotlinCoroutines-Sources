@@ -13,7 +13,7 @@ fun callCompletableFuture() {
     }.let { futureList ->
         CompletableFuture.allOf(*futureList.toTypedArray())
             .thenApply {
-                futureList.map { it.join() }
+                futureList.map { it.get() }
             }
     }.thenAccept { bitmaps ->
         println(bitmaps.size)
@@ -23,7 +23,7 @@ fun callCompletableFuture() {
 fun <T> List<CompletableFuture<T>>.allOf(): CompletableFuture<List<T>> {
     return CompletableFuture.allOf(*this.toTypedArray())
         .thenApply {
-            this.map { it.join() }
+            this.map { it.get() }
         }
 }
 
