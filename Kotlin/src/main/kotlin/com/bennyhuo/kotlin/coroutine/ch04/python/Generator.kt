@@ -7,7 +7,10 @@ interface Generator<T> {
     operator fun iterator(): Iterator<T>
 }
 
-class GeneratorImpl<T>(private val block: suspend GeneratorScope<T>.(T) -> Unit, private val parameter: T):
+class GeneratorImpl<T>(
+    private val block: suspend GeneratorScope<T>.(T) -> Unit,
+    private val parameter: T
+) :
     Generator<T> {
     override fun iterator(): Iterator<T> {
         return GeneratorIterator(block, parameter)
@@ -15,34 +18,39 @@ class GeneratorImpl<T>(private val block: suspend GeneratorScope<T>.(T) -> Unit,
 }
 
 sealed class State {
-    class NotReady(val continuation: Continuation<Unit>): State()
-    class Ready<T>(val continuation: Continuation<Unit>, val nextValue: T): State()
-    object Done: State()
+    class NotReady(val continuation: Continuation<Unit>) : State()
+    class Ready<T>(val continuation: Continuation<Unit>, val nextValue: T) :
+        State()
+
+    object Done : State()
 }
 
-class GeneratorIterator<T>(private val block: suspend GeneratorScope<T>.(T) -> Unit, val parameter: T)
-    : GeneratorScope<T>, Iterator<T>, Continuation<Any?> {
+class GeneratorIterator<T>(
+    private val block: suspend GeneratorScope<T>.(T) -> Unit,
+    private val parameter: T
+) : GeneratorScope<T>, Iterator<T>, Continuation<Any?> {
     override val context: CoroutineContext = EmptyCoroutineContext
 
     private var state: State
 
     init {
-        val coroutineBlock: suspend GeneratorScope<T>.() -> Unit = { block(parameter) }
+        val coroutineBlock: suspend GeneratorScope<T>.() -> Unit =
+            { block(parameter) }
         val start = coroutineBlock.createCoroutine(this, this)
         state = State.NotReady(start)
     }
 
-    override suspend fun yield(value: T) = suspendCoroutine<Unit> {
-        continuation ->
-        state = when(state) {
-            is State.NotReady -> State.Ready(continuation, value)
-            is State.Ready<*> ->  throw IllegalStateException("Cannot yield a value while ready.")
-            State.Done -> throw IllegalStateException("Cannot yield a value while done.")
+    override suspend fun yield(value: T) =
+        suspendCoroutine<Unit> { continuation ->
+            state = when (state) {
+                is State.NotReady -> State.Ready(continuation, value)
+                is State.Ready<*> -> throw IllegalStateException("Cannot yield a value while ready.")
+                State.Done -> throw IllegalStateException("Cannot yield a value while done.")
+            }
         }
-    }
 
     private fun resume() {
-        when(val currentState = state) {
+        when (val currentState = state) {
             is State.NotReady -> currentState.continuation.resume(Unit)
         }
     }
@@ -53,7 +61,7 @@ class GeneratorIterator<T>(private val block: suspend GeneratorScope<T>.(T) -> U
     }
 
     override fun next(): T {
-        return when(val currentState = state) {
+        return when (val currentState = state) {
             is State.NotReady -> {
                 resume()
                 return next()
@@ -101,10 +109,10 @@ fun main() {
         yield(2)
         yield(3)
         yield(4)
-        yieldAll(listOf(1,2,3,4))
+        yieldAll(listOf(1, 2, 3, 4))
     }
 
-    for(element in sequence){
+    for (element in sequence) {
         println(element)
     }
 

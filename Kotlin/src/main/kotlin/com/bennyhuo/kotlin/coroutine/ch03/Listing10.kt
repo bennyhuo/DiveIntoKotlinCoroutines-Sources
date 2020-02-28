@@ -5,6 +5,7 @@ import kotlin.coroutines.EmptyCoroutineContext
 
 fun main() {
     val ref = ::notSuspend
+    ref.call()
     val result = ref.call(object: Continuation<Int> {
         override val context = EmptyCoroutineContext
 
