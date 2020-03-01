@@ -55,15 +55,9 @@ class ImageAsyncTaskWithCallback(
 ) : AsyncTask<String, Int, List<Bitmap>>() {
 
     override fun doInBackground(vararg params: String): List<Bitmap> {
-        return params.mapIndexed { index, param ->
+        return params.mapIndexed { index, url ->
             publishProgress(index * 100 / params.size)
-            val response = okHttpClient.newCall(
-                Request.Builder().get().url(param).build()
-            ).execute()
-
-            response.body()?.byteStream()
-                ?.let { BitmapFactory.decodeStream(it) }
-                ?: throw HttpException(response)
+            ImageManager.getBitmapSync(url)
         }.also { publishProgress(100) }
     }
 
