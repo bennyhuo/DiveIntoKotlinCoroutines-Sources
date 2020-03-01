@@ -1,7 +1,6 @@
 package com.bennyhuo.kotlin.coroutines.android.ui
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
@@ -17,7 +16,7 @@ import com.bennyhuo.kotlin.coroutines.android.R
 import com.bennyhuo.kotlin.coroutines.android.api.GitUser
 import com.bennyhuo.kotlin.coroutines.android.db.User
 import com.bennyhuo.kotlin.coroutines.android.download.DownloadStatus.*
-import com.bennyhuo.kotlin.coroutines.android.legacy.UrlAsyncTask
+import com.bennyhuo.kotlin.coroutines.android.legacy.ImageAsyncTaskWithCallback
 import com.bennyhuo.kotlin.coroutines.android.utils.alert
 import com.bennyhuo.kotlin.coroutines.android.utils.toast
 import kotlinx.android.synthetic.main.activity_main.*
@@ -127,7 +126,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         loadImage2Button.setOnClickListener {
-            UrlAsyncTask(onComplete = { bitmap ->
+            ImageAsyncTaskWithCallback(onComplete = { bitmap ->
                 logoView.setImageBitmap(bitmap)
             }).execute("https://upload.wikimedia.org/wikipedia/commons/3/3e/Android_logo_2019.png")
         }

@@ -49,7 +49,7 @@ class CallbackAsyncTask<P, R>(
     }
 }
 
-class UrlAsyncTask(
+class ImageAsyncTaskWithCallback(
     private val onProgress: ((Int) -> Unit)? = null,
     private val onComplete: ((Bitmap) -> Unit)? = null
 ) : AsyncTask<String, Int, List<Bitmap>>() {
