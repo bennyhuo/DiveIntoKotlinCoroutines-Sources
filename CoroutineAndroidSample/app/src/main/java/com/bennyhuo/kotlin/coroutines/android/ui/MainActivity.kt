@@ -21,6 +21,9 @@ import com.bennyhuo.kotlin.coroutines.android.utils.alert
 import com.bennyhuo.kotlin.coroutines.android.utils.toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
+import splitties.alertdialog.appcompat.alertDialog
+import splitties.alertdialog.appcompat.coroutines.showAndAwait
+import splitties.alertdialog.appcompat.message
 
 
 class MainActivity : AppCompatActivity() {
@@ -47,6 +50,15 @@ class MainActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 val myChoice = alert("Warning!", "Do you want this?")
                 toast("My choice is: $myChoice")
+
+                val result = alertDialog {
+                    message = "Dialog from Splitties"
+                }.showAndAwait(
+                    okValue = 1,
+                    cancelValue = 0,
+                    dismissValue = -1
+                )
+                toast("Result from splitties dialog: $result")
             }
         }
 
