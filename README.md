@@ -1,6 +1,10 @@
 # 《深入理解 Kotlin 协程》 源码
 
-*本仓库为随书源码，书预计 6月底上架，敬请关注*
+*本仓库为随书源码*
+
+最新动态请访问：[本书主页](https://www.bennyhuo.com/project/kotlin-coroutines.html) 查看。
+
+本书已经在[京东](https://item.jd.com/12898592.html)、[当当](http://product.dangdang.com/28973005.html)上架，请感兴趣的小伙伴留意。
 
 * 第一章 ~ 第六章
     - [Kotlin 协程](Kotlin)
