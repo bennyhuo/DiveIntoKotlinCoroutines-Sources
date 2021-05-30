@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "13.5.3",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "rxjs": "^6.5.4"
   }
 }
