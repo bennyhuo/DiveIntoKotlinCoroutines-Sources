@@ -1,7 +1,6 @@
 package com.bennyhuo.kotlin.coroutine.ch01
 
 import com.bennyhuo.kotlin.coroutine.common.api.httpClient
-import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream
 import okhttp3.Request
 import java.io.ByteArrayOutputStream
 import java.io.IOException

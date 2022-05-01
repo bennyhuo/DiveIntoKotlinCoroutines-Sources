@@ -8,7 +8,7 @@ import java.io.OutputStream
 import kotlin.coroutines.coroutineContext
 
 
-@UseExperimental(InternalCoroutinesApi::class)
+@OptIn(InternalCoroutinesApi::class)
 suspend fun InputStream.copyToSuspend(out: OutputStream, bufferSize: Int = DEFAULT_BUFFER_SIZE): Long {
     var bytesCopied: Long = 0
     val buffer = ByteArray(bufferSize)
@@ -28,7 +28,7 @@ suspend fun InputStream.copyToSuspend(out: OutputStream, bufferSize: Int = DEFAU
 }
 
 
-@UseExperimental(InternalCoroutinesApi::class)
+@OptIn(InternalCoroutinesApi::class)
 suspend fun InputStream.copyToSuspend2(out: OutputStream, bufferSize: Int = DEFAULT_BUFFER_SIZE): Long {
     var bytesCopied: Long = 0
     val buffer = ByteArray(bufferSize)
