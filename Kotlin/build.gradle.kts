@@ -16,7 +16,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
 
-    implementation("com.bennyhuo.java:portable-android-handler:0.3")
+    implementation("com.bennyhuo:portable-android-handler:1.0")
 
     implementation("com.squareup.retrofit2:retrofit:2.7.0")
     implementation("com.squareup.retrofit2:converter-gson:2.7.0")
